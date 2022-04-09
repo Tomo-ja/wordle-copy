@@ -1,0 +1,9 @@
+.header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #565758;
+  text-align: center;
+}
+.header_title {
+  letter-spacing: -0.05em;
+}
