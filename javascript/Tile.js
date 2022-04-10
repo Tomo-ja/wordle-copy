@@ -15,10 +15,8 @@ export class Tile {
 		return $textBox
 	}
 
-	putGuessLetter(letter, number){
-		if(number === this.positionCol){
-			this.guessLetter = letter
-		}
+	putGuessLetter(letter){
+		this.guessLetter = letter
 	}
 
 	checkAnswer(answerArray){
