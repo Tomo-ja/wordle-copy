@@ -3,17 +3,18 @@ import getNewWord from "./getNewWord.js";
 
 const $field = document.getElementById("game_field")
 
-const tilesObject = []
+const tilesObject = {row1:[],row2:[],row3:[],row4:[],row5:[],row6:[]}
 let answer = ""
 
-let currentRow = 0
-let currentColum = 0
+let currentRow = 1
+let currentColum = 1
 
 let domTilesInRow1 = []
 let domTilesInRow2 = []
 let domTilesInRow3 = []
 let domTilesInRow4 = []
 let domTilesInRow5 = []
+let domTilesInRow6 = []
 
 // add event on each key on screen when it's pressed
 const keyBoardBtns = [...document.getElementsByClassName("key-board_key")]
@@ -40,18 +41,20 @@ const initGame = () =>{
 		.then(res => {
 			answer = res.word
 			let counter = 0
-			for(let row=0; row<6; row++){
+			for(let row=1; row<7; row++){
 				for(let col=0; col<5; col++){
-					tilesObject[counter] =　new Tile(col, row, answer[col]) 
+					tilesObject[`row${row}`].push(new Tile(col, row, answer[col]))
 					counter ++
 				}
 			}
 		})
 		.then(()=>{
-			tilesObject.forEach(tile => {
-				const $tileElement = tile.createDomElement()
-				$field.appendChild($tileElement)
-			});
+			for(let i=1; i<7;i++){
+				tilesObject[`row${i}`].forEach(tile=>{
+					const $tileElement = tile.createDomElement()
+					$field.appendChild($tileElement)
+				})
+			}
 			console.log(tilesObject)
 		}).then(()=>{
 			domTilesInRow1 = [...document.getElementsByClassName("game-tile_row-1")]
@@ -59,6 +62,7 @@ const initGame = () =>{
 			domTilesInRow3 = [...document.getElementsByClassName("game-tile_row-3")]
 			domTilesInRow4 = [...document.getElementsByClassName("game-tile_row-4")]
 			domTilesInRow5 = [...document.getElementsByClassName("game-tile_row-5")]
+			domTilesInRow6 = [...document.getElementsByClassName("game-tile_row-6")]
 		})
 }
 
