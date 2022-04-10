@@ -17,5 +17,6 @@ img {
   height: 100%;
 }
 button {
+  display: block;
   border: none;
 }

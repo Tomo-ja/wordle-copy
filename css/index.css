@@ -3,19 +3,31 @@
   grid-template-columns: 60px 60px 60px 60px 60px;
   grid-template-rows: 60px 60px 60px 60px 60px 60px;
   gap: 8px;
+  margin: 0 auto;
+  width: 332px;
+}
+.game-tile {
+  background-color: #c4c4c4;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 60px;
+  text-align: center;
+  text-transform: uppercase;
 }
 .key-board_filed {
-  width: 100vw;
-  text-align: center;
   position: absolute;
   bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 .key-board_row {
+  display: flex;
+  justify-content: center;
   margin-top: 8px;
 }
 .key-board_key {
   height: 58px;
-  margin-right: 0 6px 0 0;
+  margin: 0 6px 0 0;
   padding: 0 15px;
   border-radius: 4px;
   background-color: #818384;

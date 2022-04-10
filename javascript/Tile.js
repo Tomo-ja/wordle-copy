@@ -1,7 +1,7 @@
 export class Tile {
 	constructor(colum, row, answer){
-		this.positionCol = colum,
 		this.positionRow = row,
+		this.positionCol = colum,
 		this.answerLetter = answer,
 		this.guessLetter = "",
 		this.backGroundColor = "#121213"
@@ -11,7 +11,7 @@ export class Tile {
 	createDomElement(){
 		const $textBox = document.createElement("div")
 		$textBox.classList.add("game-tile", `game-tile_row-${this.positionRow}`)
-		$textBox.innerText = this.guessLetter
+		$textBox.innerText = ""
 		return $textBox
 	}
 
