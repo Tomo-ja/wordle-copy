@@ -1,9 +1,10 @@
 import { Tile } from "./Tile.js"
 import getNewWord from "./getNewWord.js";
 
-const data = getNewWord()
-data.then(res => console.log(res.word))
 const $field = document.getElementById("game_field")
+
+const initTiles = []
+let answer = ""
 
 // add event on each key on screen when it's pressed
 const keyBoardBtns = [...document.getElementsByClassName("key-board_key")]
@@ -14,18 +15,29 @@ keyBoardBtns.forEach(btn => {
 	})
 });
 
-const initTiles = []
-const answer = "teach"
+document.addEventListener("keydown", (e)=>{
+	console.log(e.key)
+})
 
-let counter = 0
-for(let row=0; row<6; row++){
-	for(let col=0; col<5; col++){
-		initTiles[counter] = new Tile(col, row, answer[col])
-		counter ++
-	}
+const initGame = () =>{
+	getNewWord()
+		.then(res => {
+			answer = res.word
+			let counter = 0
+			for(let row=0; row<6; row++){
+				for(let col=0; col<5; col++){
+					initTiles[counter] =　new Proxy(new Tile(col, row, answer[col]), {}) 
+					counter ++
+				}
+			}
+		})
+		.then(()=>{
+			initTiles.forEach(tile => {
+				const $tileElement = tile.createDomElement()
+				$field.appendChild($tileElement)
+			});
+		})
 }
 
-initTiles.forEach(tile => {
-	const $tileElement = tile.createDomElement()
-	$field.appendChild($tileElement)
-});
+
+initGame()
