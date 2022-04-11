@@ -16,27 +16,6 @@ let domTilesInRow4 = []
 let domTilesInRow5 = []
 let domTilesInRow6 = []
 
-
-// add event on each key on screen when it's pressed
-const keyBoardBtns = [...document.getElementsByClassName("key-board_key")]
-keyBoardBtns.forEach(btn => {
-	btn.addEventListener("click", (e)=>{
-		e.preventDefault()
-		const value = e.currentTarget.getAttribute("data-key")
-		changeTileValue(value)
-	})
-});
-
-document.addEventListener("keydown", (e)=>{
-	if (64< e.keyCode && e.keyCode < 91){
-		//if it's letter, here
-	}else if(e.keyCode === 13){
-		console.log("pressed enter")
-	}else if(e.keyCode === 8){
-		console.log("delete is pressed")
-	}
-})
-
 const initGame = () =>{
 	getNewWord()
 		.then(res => {
@@ -113,5 +92,26 @@ const deleteValue = ()=>{
 	targetObjectTile.putGuessLetter("")
 	targetDomTile.innerText = ""
 }
+
+// add event on each key on screen when it's pressed
+const keyBoardBtns = [...document.getElementsByClassName("key-board_key")]
+keyBoardBtns.forEach(btn => {
+	btn.addEventListener("click", (e)=>{
+		e.preventDefault()
+		const value = e.currentTarget.getAttribute("data-key")
+		changeTileValue(value)
+	})
+});
+
+document.addEventListener("keydown", (e)=>{
+	if (64< e.keyCode && e.keyCode < 91){
+		changeTileValue(e.key)
+	}else if(e.keyCode === 13){
+		changeTileValue("submit")
+	}else if(e.keyCode === 8){
+		changeTileValue("delete")
+	}
+})
+
 
 initGame()
