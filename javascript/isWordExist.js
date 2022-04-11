@@ -9,7 +9,11 @@ export default function isWordExist(word){
 		};
 		try{
 			const wordInfo = await fetch(`https://wordsapiv1.p.rapidapi.com/words/${word}/typeOf`, options)
-			resolve(true)	
+			if(wordInfo.ok){
+				resolve(true)
+			}else{
+				resolve(false)
+			}
 		}catch(err){
 			reject(false)
 		}
