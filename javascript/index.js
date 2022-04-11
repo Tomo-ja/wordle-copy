@@ -75,15 +75,17 @@ const changeTileValue = (value)=>{
 	if(value === "submit"){
 		currentColum = 0
 	}else if(value === "delete"){
-		if(targetObjectTile.guessLetter === undefined){
-			currentColum -= 2
+		if(!targetObjectTile){
+			;
+		}else if(targetObjectTile.guessLetter === undefined){
+			currentColum = currentColum === 0 ? 0 : currentColum -2
 		}
-		currentColum -= 1
+		currentColum = currentColum === 0 ? 0 : currentColum -1
 		deleteValue()
 	}else{
 		targetObjectTile.putGuessLetter(value)
 		targetDomTile.innerText = value
-		currentColum += 1
+		currentColum = currentColum === 5 ? 5 : currentColum + 1
 	}
 }
 const deleteValue = ()=>{
@@ -91,6 +93,9 @@ const deleteValue = ()=>{
 	const targetObjectTile = tilesObject[`row${currentRow}`][currentColum]
 	targetObjectTile.putGuessLetter("")
 	targetDomTile.innerText = ""
+}
+const submitValue = ()=>{
+
 }
 
 // add event on each key on screen when it's pressed
