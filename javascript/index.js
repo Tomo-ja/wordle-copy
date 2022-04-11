@@ -7,7 +7,7 @@ const tilesObject = {row1:[],row2:[],row3:[],row4:[],row5:[],row6:[]}
 let answer = ""
 
 let currentRow = 1
-let currentColum = 1
+let currentColum = 0
 
 let domTilesInRow1 = []
 let domTilesInRow2 = []
@@ -16,19 +16,20 @@ let domTilesInRow4 = []
 let domTilesInRow5 = []
 let domTilesInRow6 = []
 
+
 // add event on each key on screen when it's pressed
 const keyBoardBtns = [...document.getElementsByClassName("key-board_key")]
 keyBoardBtns.forEach(btn => {
 	btn.addEventListener("click", (e)=>{
 		e.preventDefault()
-		console.log(e.currentTarget.getAttribute("data-key"))
+		const value = e.currentTarget.getAttribute("data-key")
+		changeTileValue(value)
 	})
 });
 
 document.addEventListener("keydown", (e)=>{
 	if (64< e.keyCode && e.keyCode < 91){
 		//if it's letter, here
-		console.log(e.key)
 	}else if(e.keyCode === 13){
 		console.log("pressed enter")
 	}else if(e.keyCode === 8){
@@ -64,6 +65,53 @@ const initGame = () =>{
 			domTilesInRow5 = [...document.getElementsByClassName("game-tile_row-5")]
 			domTilesInRow6 = [...document.getElementsByClassName("game-tile_row-6")]
 		})
+}
+
+const checkTargetDom = (row, col)=>{
+	const targetRow = checkTargetRow(row)
+	const targetTile = targetRow[col]
+	return targetTile
+}
+const checkTargetRow = (row)=>{
+	switch (row) {
+		case 1:
+			return domTilesInRow1
+		case 2:
+			return domTilesInRow2
+		case 3:
+			return domTilesInRow3
+		case 4:
+			return domTilesInRow4
+		case 5:
+			return domTilesInRow5
+		case 6:
+			return domTilesInRow6
+		default:
+			break;
+	}
+}
+const changeTileValue = (value)=>{
+	const targetDomTile = checkTargetDom(currentRow, currentColum)
+	const targetObjectTile = tilesObject[`row${currentRow}`][currentColum]
+	if(value === "submit"){
+		currentColum = 0
+	}else if(value === "delete"){
+		if(targetObjectTile.guessLetter === undefined){
+			currentColum -= 2
+		}
+		currentColum -= 1
+		deleteValue()
+	}else{
+		targetObjectTile.putGuessLetter(value)
+		targetDomTile.innerText = value
+		currentColum += 1
+	}
+}
+const deleteValue = ()=>{
+	const targetDomTile = checkTargetDom(currentRow, currentColum)
+	const targetObjectTile = tilesObject[`row${currentRow}`][currentColum]
+	targetObjectTile.putGuessLetter("")
+	targetDomTile.innerText = ""
 }
 
 initGame()
