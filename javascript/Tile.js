@@ -34,5 +34,3 @@ export class Tile {
 		return "nonMatch"
 	}
 }
-
-//Object.observe

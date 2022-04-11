@@ -1,5 +1,6 @@
 import { Tile } from "./Tile.js"
 import getNewWord from "./getNewWord.js";
+import isWordExist from "./isWordExist.js";
 
 const $field = document.getElementById("game_field")
 
@@ -69,11 +70,27 @@ const checkTargetRow = (row)=>{
 			break;
 	}
 }
+const checkTargetObject = (row)=>{
+	switch (row){
+		case 1:
+			return tilesObject.row1
+		case 2:
+			return tilesObject.row2
+		case 3:
+			return tilesObject.row3
+		case 4:
+			return tilesObject.row4
+		case 5:
+			return tilesObject.row5
+		case 6:
+			return tilesObject.row6
+		}
+}
 const changeTileValue = (value)=>{
 	const targetDomTile = checkTargetDom(currentRow, currentColum)
 	const targetObjectTile = tilesObject[`row${currentRow}`][currentColum]
 	if(value === "submit"){
-		currentColum = 0
+		submitValue()
 	}else if(value === "delete"){
 		if(!targetObjectTile){
 			;
@@ -94,8 +111,13 @@ const deleteValue = ()=>{
 	targetObjectTile.putGuessLetter("")
 	targetDomTile.innerText = ""
 }
-const submitValue = ()=>{
-
+const submitValue = async()=>{
+	const answerArray = checkTargetObject(currentRow)
+	const userAnswer = `${answerArray[0].guessLetter}${answerArray[1].guessLetter}${answerArray[2].guessLetter}${answerArray[3].guessLetter}${answerArray[4].guessLetter}`
+	isWordExist(userAnswer)
+		.then(res=>{
+			console.log(res)
+		})
 }
 
 // add event on each key on screen when it's pressed
