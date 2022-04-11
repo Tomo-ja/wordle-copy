@@ -7,7 +7,8 @@
   width: 332px;
 }
 .game-tile {
-  background-color: #c4c4c4;
+  background-color: #121213;
+  border: 2px solid #3a3a3c;
   font-size: 32px;
   font-weight: 700;
   line-height: 60px;
@@ -34,4 +35,28 @@
   color: #fff;
   font-weight: 700;
   text-transform: uppercase;
+}
+.game_pop-up {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 5px 10px;
+  background-color: #fff;
+  border-radius: 4px;
+  color: #121213;
+  font-size: 16px;
+  line-height: 26px;
+  animation: pop_up 2s forwards;
+}
+@keyframes pop_up {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

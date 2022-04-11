@@ -116,8 +116,22 @@ const submitValue = async()=>{
 	const userAnswer = `${answerArray[0].guessLetter}${answerArray[1].guessLetter}${answerArray[2].guessLetter}${answerArray[3].guessLetter}${answerArray[4].guessLetter}`
 	isWordExist(userAnswer)
 		.then(res=>{
+			if(res){
+
+			}else{
+				popUpNoExist()
+			}
 			console.log(res)
 		})
+}
+const popUpNoExist = ()=>{
+	const $popUp = document.createElement("div")
+	$popUp.className = "game_pop-up"
+	$popUp.innerText = "Couldn't find that word"
+	$field.appendChild($popUp)
+	setTimeout(()=>{
+		$field.removeChild($popUp)
+	}, 2000)
 }
 
 // add event on each key on screen when it's pressed

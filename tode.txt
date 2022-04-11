@@ -1,0 +1,4 @@
+next
+	check word letter and make some animations
+		create function if it's not exist
+			pop up?
