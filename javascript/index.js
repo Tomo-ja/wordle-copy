@@ -134,10 +134,28 @@ const popUpNoExist = ()=>{
 }
 const identifyAnswer = (objectArray, domArray)=>{
 	objectArray.forEach((tile, index) =>{
-		tile.checkAnswer(answer)
+		const isLetterInclude = tile.checkAnswer(answer)
+		changeKeyboard(isLetterInclude, tile.guessLetter)
 		domArray[index].style.backgroundColor = tile.backgroundColor
 	})
 }
+
+const changeKeyboard = (result, letter)=>{
+	const $targetKey = document.querySelector(`[data-key="${letter}"]`)
+	switch(result){
+		case "match":
+			$targetKey.style.backgroundColor = "#538D4E"
+			break
+		case "partOf":
+			$targetKey.style.backgroundColor = "#B49F3A"
+			break
+		case "nonMatch":
+			console.log("here")
+			$targetKey.style.backgroundColor = "#3A3A3C"
+			break
+	}
+}
+
 
 // add event on each key on screen when it's pressed
 const keyBoardBtns = [...document.getElementsByClassName("key-board_key")]

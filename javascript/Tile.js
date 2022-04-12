@@ -25,7 +25,7 @@ export class Tile {
 			this.backgroundColor = "#538D4E"
 			return "match"
 		}
-		const partOfAnswer = answerArray.find(letter => letter === this.guessLetter)
+		const partOfAnswer = [...answerArray].find(letter => letter === this.guessLetter)
 		if(partOfAnswer){
 			this.backgroundColor = "#B69F3B"
 			return "partOf"

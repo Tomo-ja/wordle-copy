@@ -1,6 +1,5 @@
 next
-	check word letter and make some animations
-		create function if it's not exist
-			pop up?
-	change bg-color is not working right now
-	index 135
+
+
+later
+	flip animation on each card
