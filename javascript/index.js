@@ -1,8 +1,12 @@
 import { Tile } from "./Tile.js"
 import getNewWord from "./getNewWord.js";
 import isWordExist from "./isWordExist.js";
+import makeConfetti from "./confetti.js";
 
 const $field = document.getElementById("game_field")
+const $result = document.getElementById("result")
+const $result_answer = document.getElementById("result_answer")
+const $result_title = document.getElementById("result_title")
 
 const tilesObject = {row1:[],row2:[],row3:[],row4:[],row5:[],row6:[]}
 let answer = ""
@@ -124,6 +128,10 @@ const submitValue = async()=>{
 			}else{
 				popUpNoExist()
 			}
+		}).then(()=>{
+			if(currentRow === 7){
+				displayResult("Out of chance :(", false)
+			}
 		})
 }
 const popUpNoExist = ()=>{
@@ -136,18 +144,24 @@ const popUpNoExist = ()=>{
 	}, 2000)
 }
 const identifyAnswer = (objectArray, domArray)=>{
+	let matchLetter = 0
 	objectArray.forEach((tile, index) =>{
 		const isLetterInclude = tile.checkAnswer(answer)
-		changeKeyboard(isLetterInclude, tile.guessLetter)
+		matchLetter = changeKeyboard(isLetterInclude, tile.guessLetter) ? matchLetter + 1 : matchLetter
 		domArray[index].style.backgroundColor = tile.backgroundColor
 	})
+	if(matchLetter === 5){
+		displayResult("Congratulation", true)
+	}
 }
 
 const changeKeyboard = (result, letter)=>{
 	const $targetKey = document.querySelector(`[data-key="${letter}"]`)
+	let isMatch = false
 	switch(result){
 		case "match":
 			$targetKey.style.backgroundColor = "#538D4E"
+			isMatch = true
 			break
 		case "partOf":
 			$targetKey.style.backgroundColor = "#B49F3A"
@@ -156,8 +170,16 @@ const changeKeyboard = (result, letter)=>{
 			$targetKey.style.backgroundColor = "#3A3A3C"
 			break
 	}
+	return isMatch
 }
-
+const displayResult = (text, userWin)=>{
+	$result_title.innerText = text
+	$result_answer.innerText = answer
+	$result.style.display = "block"
+	if(userWin){
+		makeConfetti()
+	}
+}
 
 // add event on each key on screen when it's pressed
 const keyBoardBtns = [...document.getElementsByClassName("key-board_key")]
@@ -179,5 +201,9 @@ document.addEventListener("keydown", (e)=>{
 	}
 })
 
+const tryAgainBtn = document.getElementById("result_try-again")
+tryAgainBtn.addEventListener("click", ()=>{
+	window.location.reload()
+})
 
 initGame()

@@ -60,3 +60,38 @@
     opacity: 0;
   }
 }
+.result {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  padding: 30px 20px;
+  background-color: orange;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.result_title {
+  margin-bottom: 40px;
+}
+.result_answer-area {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+.result_answer-area_word {
+  font-size: 24px;
+  text-transform: uppercase;
+}
+.result_try-again {
+  margin: 10px auto;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  background-color: #121213;
+  color: white;
+  font-size: 16px;
+  transition: all 0.1s ease-in-out;
+}
+.result_try-again:hover {
+  background-color: #47474d;
+  transform: scale(1.1);
+}
