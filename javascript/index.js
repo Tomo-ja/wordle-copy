@@ -113,11 +113,14 @@ const deleteValue = ()=>{
 }
 const submitValue = async()=>{
 	const answerArray = checkTargetObject(currentRow)
+	const targetDomArray = checkTargetRow(currentRow)
 	const userAnswer = `${answerArray[0].guessLetter}${answerArray[1].guessLetter}${answerArray[2].guessLetter}${answerArray[3].guessLetter}${answerArray[4].guessLetter}`
 	isWordExist(userAnswer)
 		.then(res=>{
 			if(res){
-				identifyAnswer(answerArray, domTilesInRow1)
+				identifyAnswer(answerArray, targetDomArray)
+				currentRow += 1
+				currentColum = 0
 			}else{
 				popUpNoExist()
 			}
@@ -150,7 +153,6 @@ const changeKeyboard = (result, letter)=>{
 			$targetKey.style.backgroundColor = "#B49F3A"
 			break
 		case "nonMatch":
-			console.log("here")
 			$targetKey.style.backgroundColor = "#3A3A3C"
 			break
 	}
