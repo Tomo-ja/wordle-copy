@@ -4,7 +4,7 @@ export class Tile {
 		this.positionCol = colum,
 		this.answerLetter = answer,
 		this.guessLetter = "",
-		this.backGroundColor = "#121213"
+		this.backgroundColor = "#121213"
 		this.isCheckedAnswer = false
 	}
 
@@ -22,15 +22,15 @@ export class Tile {
 	checkAnswer(answerArray){
 		this.isCheckedAnswer = true
 		if (this.answerLetter === this.guessLetter){
-			this.backGroundColor = "#538D4E"
+			this.backgroundColor = "#538D4E"
 			return "match"
 		}
 		const partOfAnswer = answerArray.find(letter => letter === this.guessLetter)
 		if(partOfAnswer){
-			this.backGroundColor = "#B69F3B"
+			this.backgroundColor = "#B69F3B"
 			return "partOf"
 		}
-		this.backGroundColor = "#3A3A3C"
+		this.backgroundColor = "#3A3A3C"
 		return "nonMatch"
 	}
 }

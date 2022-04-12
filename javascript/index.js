@@ -117,11 +117,10 @@ const submitValue = async()=>{
 	isWordExist(userAnswer)
 		.then(res=>{
 			if(res){
-
+				identifyAnswer(answerArray, domTilesInRow1)
 			}else{
 				popUpNoExist()
 			}
-			console.log(res)
 		})
 }
 const popUpNoExist = ()=>{
@@ -132,6 +131,12 @@ const popUpNoExist = ()=>{
 	setTimeout(()=>{
 		$field.removeChild($popUp)
 	}, 2000)
+}
+const identifyAnswer = (objectArray, domArray)=>{
+	objectArray.forEach((tile, index) =>{
+		tile.checkAnswer(answer)
+		domArray[index].style.backgroundColor = tile.backgroundColor
+	})
 }
 
 // add event on each key on screen when it's pressed
