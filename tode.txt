@@ -1,5 +1,0 @@
-next
-
-
-later
-	flip animation on each card
