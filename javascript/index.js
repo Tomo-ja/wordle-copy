@@ -40,7 +40,6 @@ const initGame = () =>{
 					$field.appendChild($tileElement)
 				})
 			}
-			console.log(tilesObject)
 		}).then(()=>{
 			domTilesInRow1 = [...document.getElementsByClassName("game-tile_row-1")]
 			domTilesInRow2 = [...document.getElementsByClassName("game-tile_row-2")]
