@@ -2,7 +2,7 @@
 
 <img src="/Preview.png" alt="Preview of the App">
 
-My first user-interaction application which is created based on real game [Wordle]('https://www.nytimes.com/games/wordle/index.html')
+My first user-interaction application which is created based on real game [Wordle](https://www.nytimes.com/games/wordle/index.html)
 
 ⚠️ For security reason, deployment version on github page doesn't have api key. That is why the target word is always constant. If you wish you can modify it like below to get a random word.
 
@@ -18,7 +18,7 @@ My first user-interaction application which is created based on real game [Wordl
 		    };
 ```
 
-[Word api is here]('https://rapidapi.com/dpventures/api/wordsapi/')
+[Word api is here](https://rapidapi.com/dpventures/api/wordsapi/)
 
 ## Motivation
 
@@ -28,7 +28,7 @@ Although the application is pretty straight forward, this application required m
 
 ## Usage
 
-This application is available on [github page]('https://tomo-ja.github.io/wordle-copy/')
+This application is available on [github page](https://tomo-ja.github.io/wordle-copy/)
 
 or
 
@@ -41,7 +41,7 @@ git clone git@github.com:Tomo-ja/wordle-copy.git
 - HTML5
 - CSS3
 - Vanilla js
-- [Words API]('https://rapidapi.com/dpventures/api/wordsapi/')
+- [Words API](https://rapidapi.com/dpventures/api/wordsapi/)
 
 ## Architecture
 
